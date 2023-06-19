@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<script>
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    var str = "SPIDER";
+    document.title = "";
+    async function changetitle() {
+        for (let i = 0; i < str.length; i++) {
+            document.title += str.charAt(i);
+            await sleep(200);
+        }
+    }
+    changetitle();
+</script>
+<style>
+    .class1 {
+        margin: 0;
+        position: absolute;
+        top: 40%;
+        left: 49%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
+    }
+    
+    img {
+        opacity: 0.25;
+    }
+    
+    a {
+        color: #c2c0b3;
+        text-decoration: none;
+    }
+    
+    a:hover {
+        color: #939289;
+        text-decoration: none;
+    }
+    
+    b {
+        color: #c2c0b3;
+        text-decoration: none;
+    }
+</style>
+
+<body style="background-color:black;">
+    <div class="class1">
+        <pre style="color:white;">
+    <img src="skull.png" alt="ThreatSEC" width="300" height="400">
+
+</pre>
+    </div>
+</body>
+
+</html>
