@@ -11,14 +11,16 @@ window.addEventListener('DOMContentLoaded', function() {
         var message = messageInput.value;
         if (message && username) {
             appendMessage(username, message);
-            saveMessages();
+            saveMessage(username, message);
             messageInput.value = '';
         }
     });
 
     function setUsername() {
         username = prompt('Please enter your username:');
-        if (username) {} else {
+        if (username) {
+            alert('Username set as: ' + username);
+        } else {
             setUsername();
         }
     }
@@ -31,16 +33,16 @@ window.addEventListener('DOMContentLoaded', function() {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    function saveMessages() {
-        var messages = chatMessages.innerHTML;
-        localStorage.setItem('chatMessages', messages);
+    function saveMessage(sender, message) {
+        var messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+        messages.push({ sender: sender, message: message });
+        localStorage.setItem('chatMessages', JSON.stringify(messages));
     }
 
     function loadMessages() {
-        var messages = localStorage.getItem('chatMessages');
-        if (messages) {
-            chatMessages.innerHTML = messages;
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+        var messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+        for (var i = 0; i < messages.length; i++) {
+            appendMessage(messages[i].sender, messages[i].message);
         }
     }
 });
